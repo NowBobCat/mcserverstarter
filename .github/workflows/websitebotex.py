@@ -89,15 +89,15 @@ def run_loginflow(usernamesec,passwordsec):
         time.sleep(5)
         print("entered username")
         ran_loginflow = 1
-        except Exception as e:
-            print(f"Error occurred(username): {e}")
-            print("After waiting for username:\n"+driver.current_url)
-            try:
-                driver.save_screenshot("/tmp/debug_screenshot.png")
-                with open("/tmp/debug_page.html", "w") as f:
-                    f.write(driver.page_source)
-            except Exception as debug_e:
-                print(f"Could not save debug screenshot: {debug_e}")
+    except Exception as e:
+        print(f"Error occurred(username): {e}")
+        print("After waiting for username:\n"+driver.current_url)
+        try:
+            driver.save_screenshot("/tmp/debug_screenshot.png")
+            with open("/tmp/debug_page.html", "w") as f:
+                f.write(driver.page_source)
+        except Exception as debug_e:
+            print(f"Could not save debug screenshot: {debug_e}")
         
     #---------------------------
     
