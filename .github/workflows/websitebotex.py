@@ -205,7 +205,14 @@ try:
     driver.execute_script("arguments[0].scrollIntoView(true);", startworld)
     driver.execute_script("arguments[0].click();", startworld)
     print("Clicked start")
-    time.sleep(2)
+    time.sleep(5)
+    try:
+        driver.save_screenshot("/tmp/debug_screenshot.png")
+        with open("/tmp/debug_page.html", "w") as f:
+            f.write(driver.page_source)
+        print("Saved after-click screenshot")
+    except Exception as debug_e:
+        print(f"Could not save after-click screenshot: {debug_e}")
 
 except Exception as e:
     print(f"Error occurred(start): {e}")
