@@ -188,6 +188,12 @@ try:
                     sys.exit()
                 except Exception as e:
                     print(f"Neither Start nor Stop button found. Something might be wrong: {e}")
+                    try:
+                        driver.save_screenshot("/tmp/debug_screenshot.png")
+                        with open("/tmp/debug_page.html", "w") as f:
+                            f.write(driver.page_source)
+                    except Exception as debug_e:
+                        print(f"Could not save debug screenshot: {debug_e}")
                     driver.quit()
                     exit()
         except Exception as inner_exc:
