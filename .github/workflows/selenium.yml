@@ -104,6 +104,16 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
         run: python .github/workflows/websitebotex.py
 
+      - name: Upload debug screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshot
+          path: |
+            /tmp/debug_screenshot.png
+            /tmp/debug_page.html
+          if-no-files-found: ignore
+
       - name: Run Selenium Stop Script
         if: ${{ inputs.start_or_stop == 'false' }}
         env:
